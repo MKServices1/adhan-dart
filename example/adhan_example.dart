@@ -10,7 +10,7 @@ void main() {
   final prayerTimes = PrayerTimes.today(myCoordinates, params);
 
   print(
-      "---Today's Prayer Times in Your Local Timezone(${prayerTimes.fajr.timeZoneName})---");
+      "---Today's Prayer Times in Your Local Timezone(${prayerTimes.fajr!.timeZoneName})---");
   print(DateFormat.jm().format(prayerTimes.fajr));
   print(DateFormat.jm().format(prayerTimes.sunrise));
   print(DateFormat.jm().format(prayerTimes.dhuhr));
@@ -30,7 +30,7 @@ void main() {
   final nyPrayerTimes =
       PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
 
-  print(nyPrayerTimes.fajr.timeZoneName);
+  print(nyPrayerTimes.fajr!.timeZoneName);
   print(DateFormat.jm().format(nyPrayerTimes.fajr));
   print(DateFormat.jm().format(nyPrayerTimes.sunrise));
   print(DateFormat.jm().format(nyPrayerTimes.dhuhr));

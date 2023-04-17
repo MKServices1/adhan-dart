@@ -63,12 +63,12 @@ void main() {
 
     final prayerTimes = PrayerTimes(kushtia, date, params);
 
-    expect(prayerTimes.fajr.isUtc, false);
-    expect(prayerTimes.sunrise.isUtc, false);
-    expect(prayerTimes.dhuhr.isUtc, false);
-    expect(prayerTimes.asr.isUtc, false);
-    expect(prayerTimes.maghrib.isUtc, false);
-    expect(prayerTimes.isha.isUtc, false);
+    expect(prayerTimes.fajr!.isUtc, false);
+    expect(prayerTimes.sunrise!.isUtc, false);
+    expect(prayerTimes.dhuhr!.isUtc, false);
+    expect(prayerTimes.asr!.isUtc, false);
+    expect(prayerTimes.maghrib!.isUtc, false);
+    expect(prayerTimes.isha!.isUtc, false);
   });
 
   test('Test PrayerTimes.timeForPrayer', () {
@@ -105,15 +105,15 @@ void main() {
     final prayerTimes =
         PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
 
-    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.fajr), Prayer.fajr);
-    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.sunrise),
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.fajr!), Prayer.fajr);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.sunrise!),
         Prayer.sunrise);
     expect(
-        prayerTimes.currentPrayerByDateTime(prayerTimes.dhuhr), Prayer.dhuhr);
-    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.asr), Prayer.asr);
-    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.maghrib),
+        prayerTimes.currentPrayerByDateTime(prayerTimes.dhuhr!), Prayer.dhuhr);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.asr!), Prayer.asr);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.maghrib!),
         Prayer.maghrib);
-    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.isha), Prayer.isha);
+    expect(prayerTimes.currentPrayerByDateTime(prayerTimes.isha!), Prayer.isha);
   });
 
   test('Test PrayerTimes.nextPrayerByDateTime', () {
@@ -126,12 +126,12 @@ void main() {
     final prayerTimes =
         PrayerTimes(kushtia, date, params, utcOffset: kushtiaUtcOffset);
 
-    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.fajr), Prayer.sunrise);
-    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.sunrise), Prayer.dhuhr);
-    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.dhuhr), Prayer.asr);
-    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.asr), Prayer.maghrib);
-    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.maghrib), Prayer.isha);
-    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.isha), Prayer.none);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.fajr!), Prayer.sunrise);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.sunrise!), Prayer.dhuhr);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.dhuhr!), Prayer.asr);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.asr!), Prayer.maghrib);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.maghrib!), Prayer.isha);
+    expect(prayerTimes.nextPrayerByDateTime(prayerTimes.isha!), Prayer.none);
   });
 
   test('Test PrayerTimes.today', () {
@@ -146,12 +146,12 @@ void main() {
     final now = DateTime.now().toUtc().add(kushtiaUtcOffset);
     expect(prayerTimes.dateComponents,
         DateComponents(now.year, now.month, now.day));
-    expect(prayerTimes.fajr.day, now.day);
-    expect(prayerTimes.sunrise.day, now.day);
-    expect(prayerTimes.dhuhr.day, now.day);
-    expect(prayerTimes.asr.day, now.day);
-    expect(prayerTimes.maghrib.day, now.day);
-    expect(prayerTimes.isha.day, now.day);
+    expect(prayerTimes.fajr!.day, now.day);
+    expect(prayerTimes.sunrise!.day, now.day);
+    expect(prayerTimes.dhuhr!.day, now.day);
+    expect(prayerTimes.asr!.day, now.day);
+    expect(prayerTimes.maghrib!.day, now.day);
+    expect(prayerTimes.isha!.day, now.day);
   });
 
   test('Test PrayerTimes.utc', () {
@@ -162,12 +162,12 @@ void main() {
 
     final prayerTimes = PrayerTimes.utc(kushtia, date, params);
 
-    expect(prayerTimes.fajr.isUtc, true);
-    expect(prayerTimes.sunrise.isUtc, true);
-    expect(prayerTimes.dhuhr.isUtc, true);
-    expect(prayerTimes.asr.isUtc, true);
-    expect(prayerTimes.maghrib.isUtc, true);
-    expect(prayerTimes.isha.isUtc, true);
+    expect(prayerTimes.fajr!.isUtc, true);
+    expect(prayerTimes.sunrise!.isUtc, true);
+    expect(prayerTimes.dhuhr!.isUtc, true);
+    expect(prayerTimes.asr!.isUtc, true);
+    expect(prayerTimes.maghrib!.isUtc, true);
+    expect(prayerTimes.isha!.isUtc, true);
   });
 
   test('Test Prayer Time in NewYork with utcOffset Factory', () {
