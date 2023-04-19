@@ -20,8 +20,8 @@ class SolarCoordinates {
 
   ///  Apparent sidereal time, the hour angle of the vernal
   /// equinox, in degrees.
-  double? _apparentSiderealTime;
-  double? get apparentSiderealTime => _apparentSiderealTime;
+  late double _apparentSiderealTime;
+  double get apparentSiderealTime => _apparentSiderealTime;
 
   SolarCoordinates(double julianDay) {
     final T = CalendricalHelper.julianCentury(julianDay);

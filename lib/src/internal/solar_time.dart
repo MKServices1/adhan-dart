@@ -8,14 +8,14 @@ import 'shadow_length.dart';
 import 'solar_coordinates.dart';
 
 class SolarTime {
-  double? _transit;
-  double? get transit => _transit;
+  late double _transit;
+  double get transit => _transit;
 
-  double? _sunrise;
-  double? get sunrise => _sunrise;
+  late double _sunrise;
+  double get sunrise => _sunrise;
 
-  double? _sunset;
-  double? get sunset => _sunset;
+  late double _sunset;
+  double get sunset => _sunset;
 
   late Coordinates _observer;
   late SolarCoordinates _solar;

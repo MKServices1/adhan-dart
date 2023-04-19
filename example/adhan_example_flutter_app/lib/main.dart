@@ -29,13 +29,13 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, }) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -46,7 +46,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -67,19 +67,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final location = new Location();
-  String locationError;
-  PrayerTimes prayerTimes;
+  late String locationError;
+  late PrayerTimes prayerTimes;
 
   @override
   void initState() {
-    getLocationData().then((locationData) {
+    getLocationData().then(( locationData) {
       if (!mounted) {
         return;
       }
       if (locationData != null) {
         setState(() {
           prayerTimes = PrayerTimes(
-              Coordinates(locationData.latitude, locationData.longitude),
+              Coordinates(locationData?.latitude, locationData?.longitude),
               DateComponents.from(DateTime.now()),
               CalculationMethod.karachi.getParameters());
         });
@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!_serviceEnabled) {
       _serviceEnabled = await location.requestService();
       if (!_serviceEnabled) {
-        return null;
+        return (0,0);
       }
     }
 
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (_permissionGranted == PermissionStatus.denied) {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
-        return null;
+        return (0,0);
       }
     }
 
@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("example"),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -164,17 +164,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         textAlign: TextAlign.center,
                       ),
                       Text('Fajr Time: ' +
-                          DateFormat.jm().format(prayerTimes.fajr)),
+                          DateFormat.jm().format(prayerTimes.fajr??DateTime.now())),
                       Text('Sunrise Time: ' +
-                          DateFormat.jm().format(prayerTimes.sunrise)),
+                          DateFormat.jm().format(prayerTimes.sunrise??DateTime.now())),
                       Text('Dhuhr Time: ' +
-                          DateFormat.jm().format(prayerTimes.dhuhr)),
+                          DateFormat.jm().format(prayerTimes.dhuhr??DateTime.now())),
                       Text('Asr Time: ' +
-                          DateFormat.jm().format(prayerTimes.asr)),
+                          DateFormat.jm().format(prayerTimes.asr??DateTime.now())),
                       Text('Maghrib Time: ' +
-                          DateFormat.jm().format(prayerTimes.maghrib)),
+                          DateFormat.jm().format(prayerTimes.maghrib??DateTime.now())),
                       Text('Isha Time: ' +
-                          DateFormat.jm().format(prayerTimes.isha)),
+                          DateFormat.jm().format(prayerTimes.isha??DateTime.now())),
                     ],
                   );
                 }

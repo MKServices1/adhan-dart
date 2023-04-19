@@ -11,33 +11,33 @@ import 'madhab.dart';
 import 'prayer.dart';
 
 class PrayerTimes {
-  DateTime? _fajr;
-  DateTime? get fajr => _fajr;
+  late DateTime _fajr;
+  DateTime get fajr => _fajr;
 
-  DateTime? _sunrise;
-  DateTime? get sunrise => _sunrise;
+  late DateTime _sunrise;
+  DateTime get sunrise => _sunrise;
 
-  DateTime? _dhuhr;
-  DateTime? get dhuhr => _dhuhr;
+  late DateTime _dhuhr;
+  DateTime get dhuhr => _dhuhr;
 
-  DateTime? _asr;
-  DateTime? get asr => _asr;
+  late DateTime _asr;
+  DateTime get asr => _asr;
 
-  DateTime? _maghrib;
-  DateTime? get maghrib => _maghrib;
+  late DateTime _maghrib;
+  DateTime get maghrib => _maghrib;
 
-  DateTime? _isha;
-  DateTime? get isha => _isha;
+  late DateTime _isha;
+  DateTime get isha => _isha;
 
   // If you give a UTC Offset then Prayer Times will convert local(with device timezone) time
   // to UTC and then add the offset.
-  final Duration? utcOffset;
+  late final Duration utcOffset;
 
-  final Coordinates? coordinates;
+  late final Coordinates coordinates;
 
-  DateComponents? _dateComponents;
+  late DateComponents _dateComponents;
 
-  DateComponents? get dateComponents => _dateComponents;
+  DateComponents get dateComponents => _dateComponents;
 
   final CalculationParameters calculationParameters;
 
@@ -107,7 +107,7 @@ class PrayerTimes {
   }
 
   PrayerTimes._(this.coordinates, DateTime _date, this.calculationParameters,
-      {this.utcOffset}) {
+      {required this.utcOffset}) {
     final date = _date.toUtc();
     _dateComponents = DateComponents.from(date);
 
@@ -237,12 +237,12 @@ class PrayerTimes {
 
     if (error || tempAsr == null) {
       // if we don't have all prayer times then initialization failed
-      _fajr = null;
-      _sunrise = null;
-      _dhuhr = null;
-      _asr = null;
-      _maghrib = null;
-      _isha = null;
+      _fajr = DateTime.now();
+      _sunrise = DateTime.now();
+      _dhuhr = DateTime.now();
+      _asr = DateTime.now();
+      _maghrib = DateTime.now();
+      _isha = DateTime.now();
     } else {
       // Assign final times to public struct members with all offsets
       _fajr = CalendarUtil.roundedMinute(tempFajr!
